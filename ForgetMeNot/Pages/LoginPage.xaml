@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:iOsSpecific="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    Title="Login"
+    iOsSpecific:Page.UseSafeArea="True"
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="ModalAnimated">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Prompt" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="TextColor" Value="Snow" />
+                <Setter Property="WidthRequest" Value="125" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#512BD4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#ac99ea" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6E6E6E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Red" />
+            </Style>
+            <Style x:Key="ValidEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid
+            ColumnDefinitions="*,*,*"
+            ColumnSpacing="20"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowSpacing="10">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,0,0,30"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Login"
+                TextColor="Black"
+                VerticalOptions="Center" />
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource Prompt}"
+                Text="Your email" />
+            <Entry
+                x:Name="LoginNameEntry"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Placeholder="Email address"
+                Text="{Binding LoginName}"
+                WidthRequest="150">
+                <Entry.Behaviors>
+                    <behaviors:EmailValidationBehavior
+                        Flags="ValidateOnValueChanged"
+                        InvalidStyle="{StaticResource InvalidEntryStyle}"
+                        ValidStyle="{StaticResource ValidEntryStyle}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalOptions="End"
+                Style="{StaticResource Prompt}"
+                Text="Password" />
+            <Entry
+                x:Name="passwordEntry"
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                IsPassword="True"
+                Placeholder="Password"
+                Text="{Binding Password}"
+                WidthRequest="150" />
+            <VerticalStackLayout
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="0,10,0,0">
+                <Button Command="{Binding DoLoginCommand}" Text="Submit">
+                    <Button.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference passwordEntry}, Path=Text.Length}"
+                            TargetType="Button"
+                            Value="0">
+                            <Setter Property="IsEnabled" Value="True" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Command="{Binding DoCreateAccountCommand}" Text="Create Account" />
+                <Button
+                    BackgroundColor="LightGray"
+                    Command="{Binding ForgotPasswordCommand}"
+                    Text="Forgot Password" />
+            </VerticalStackLayout>
+        </Grid>
+        <ActivityIndicator
+            x:Name="activityIndicator"
+            Margin="0,20,0,0"
+            HeightRequest="50"
+            IsRunning="{Binding ShowActivityIndicator}"
+            Color="#512BD4" />
+    </VerticalStackLayout>
+</ContentPage>

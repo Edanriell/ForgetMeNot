@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Title="About">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,40,0,0" />
+                <Setter Property="TextColor" Value="Snow" />
+                <Setter Property="WidthRequest" Value="125" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#512BD4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#ac99ea" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6E6E6E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <HorizontalStackLayout Margin="0,0,0,10" Spacing="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="About this app"
+                VerticalOptions="Start" />
+            <Label
+                FontSize="22"
+                Text="v1.0"
+                VerticalOptions="End" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="0,0,0,10" Spacing="20">
+            <Label
+                FontAttributes="Bold"
+                FontSize="22"
+                Text="Api Version"
+                VerticalOptions="Start" />
+            <Label
+                FontSize="22"
+                Text="{Binding ApiVersion}"
+                VerticalOptions="End" />
+        </HorizontalStackLayout>
+        <!--<toolkit:Expander Margin="0,0,0,10">
+            <toolkit:Expander.Header>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Credits" />
+            </toolkit:Expander.Header>
+            <VerticalStackLayout>
+                <Label
+                    HeightRequest="60"
+                    Text="This app is written in XAML and C# with .NET MAUI."
+                    VerticalTextAlignment="Center" />
+                <Label FontSize="Small" Text="Icons from IconScout: https://iconscout.com/licenses#simple_license" />
+            </VerticalStackLayout>
+        </toolkit:Expander>-->
+        <Button
+            Command="{Binding OpenPreferencesCommand}"
+            Text="Preferences"
+            WidthRequest="140" />
+    </VerticalStackLayout>
+</ContentPage>

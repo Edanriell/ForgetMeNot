@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.UserPreferencesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="User Preferences">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,40,0,0" />
+                <Setter Property="TextColor" Value="Snow" />
+                <Setter Property="WidthRequest" Value="125" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#512BD4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#ac99ea" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6E6E6E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid
+            ColumnDefinitions="*,2*"
+            RowDefinitions="*,*,*,*"
+            WidthRequest="260">
+            <HorizontalStackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Start"
+                Spacing="20">
+                <Label Text="Display Name" VerticalOptions="Center" />
+                <Entry
+                    Placeholder="Your name as you want it displayed"
+                    Text="{Binding DisplayName}"
+                    VerticalOptions="Center"
+                    WidthRequest="120" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Start"
+                Spacing="10">
+                <Label Text="Theme" VerticalOptions="Center" />
+                <HorizontalStackLayout
+                    RadioButtonGroup.GroupName="{Binding ThemeGroupName}"
+                    RadioButtonGroup.SelectedValue="{Binding ThemeSelection}"
+                    VerticalOptions="Center">
+                    <RadioButton Content="Dark" Value="Dark" />
+                    <RadioButton Content="Light" Value="Light" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Start"
+                Spacing="20">
+                <Label Text="Wifi Only?" VerticalOptions="Center" />
+                <Switch
+                    IsToggled="{Binding WifiOnly}"
+                    OnColor="Green"
+                    ThumbColor="Blue"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Button
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Command="{Binding SavePreferencesCommand}"
+                HorizontalOptions="Center"
+                Text="Save"
+                VerticalOptions="Center" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

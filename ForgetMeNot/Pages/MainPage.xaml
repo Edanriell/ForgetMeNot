@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Home">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="TextColor" Value="Snow" />
+                <Setter Property="WidthRequest" Value="125" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#512BD4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#ac99ea" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6E6E6E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+        <VerticalStackLayout>
+            <Label
+                Margin="0,0,0,0"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Welcome to ForgetMeNot!"
+                TextColor="Black" />
+            <Image
+                x:Name="BigFlower"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="dotnet_bot.png" />
+            <Button
+                Command="{Binding GoToLoginCommand}"
+                CornerRadius="5"
+                HorizontalOptions="Center"
+                Text="Logout"
+                TextColor="Snow"
+                TextTransform="None"
+                WidthRequest="100" />
+            <!--<Label
+                x:Name="HelloLabel"
+                Margin="20"
+                Padding="10"
+                BackgroundColor="Red"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="5"
+                Text="{Binding FullName}"
+                TextColor="Yellow"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ImageTappedCommand}" />
+                </Label.GestureRecognizers>
+            </Label>-->
+            <!--<Image
+                x:Name="BigFlower"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                IsVisible="{Binding FlowerIsVisible}"
+                Source="{Binding FavoriteFlower}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToLoginCommand}" NumberOfTapsRequired="2" />
+                </Image.GestureRecognizers>
+            </Image>-->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White">
+    <ScrollView>
+        <VerticalStackLayout>-->
+<!--<Label
+                x:Name="HelloLabel"
+                Margin="20"
+                Padding="10"
+                BackgroundColor="Red"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="5"
+                Text="{Binding FullName}"
+                TextColor="Yellow"
+                VerticalTextAlignment="Center" />-->
+<!--
+            <Label
+                x:Name="HelloLabel"
+                Margin="20"
+                Padding="10"
+                BackgroundColor="Red"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="5"
+                Text="{Binding FullName}"
+                TextColor="Yellow"
+                VerticalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ImageTappedCommand}" NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Image
+                x:Name="BigFlower"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                IsVisible="{Binding FlowerIsVisible}"
+                Source="{Binding FavoriteFlower}">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ImageTappedCommand}" NumberOfTapsRequired="2" />
+                </Image.GestureRecognizers>
+            </Image>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>-->
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label
+                x:Name="HelloLabel"
+                Margin="20"
+                Padding="10"
+                BackgroundColor="Red"
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineBreakMode="WordWrap"
+                MaxLines="5"
+                Text="{Binding FullName}"
+                TextColor="Yellow"
+                VerticalTextAlignment="Center" />
+            <Image
+                x:Name="BigFlower"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                IsVisible="{Binding FlowerIsVisible}"
+                Opacity=".25"
+                RotationX="45"
+                Source="{Binding FavoriteFlower}" />
+            <Button
+                Padding="5"
+                BackgroundColor="Red"
+                BorderColor="Black"
+                BorderWidth="2"
+                Command="{Binding ToggleFlowerVisibilityCommand}"
+                CornerRadius="20"
+                FontSize="Small"
+                HeightRequest="35"
+                Text="Don't Click Me"
+                TextColor="Yellow"
+                WidthRequest="150" />
+            <ImageButton
+                Padding="5"
+                BorderColor="Black"
+                BorderWidth="2"
+                Command="{Binding ToggleFlowerVisibilityCommand}"
+                MaximumHeightRequest="75"
+                MaximumWidthRequest="75"
+                Source="{Binding FavoriteFlower}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>-->

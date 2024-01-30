@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.Pages.PreferencesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:services="clr-namespace:ForgetMeNot.Services"
+    Title="Preferences">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="TextColor" Value="Snow" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#512BD4" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#ac99ea" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#6E6E6E" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <DataTemplate x:Key="PreferenceTemplate">
+                <Grid ColumnDefinitions="*,2*">
+                    <Entry
+                        Grid.Column="0"
+                        FontSize="10"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding PreferencePrompt, Mode=TwoWay}"
+                        TextColor="{OnPlatform Black,
+                                               iOS=White}" />
+                    <Entry
+                        Grid.Column="1"
+                        FontSize="10"
+                        HeightRequest="32"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding PreferenceValue, Mode=TwoWay}"
+                        TextColor="{OnPlatform Black,
+                                               iOS=White}"
+                        WidthRequest="350" />
+                </Grid>
+            </DataTemplate>
+            <DataTemplate x:Key="PreferenceTemplateEmpty">
+                <Grid ColumnDefinitions="*,2*">
+                    <Entry
+                        Grid.Column="0"
+                        FontSize="10"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding PreferencePrompt, Mode=TwoWay}"
+                        TextColor="{OnPlatform Red,
+                                               iOS=Yellow}" />
+                    <Entry
+                        Grid.Column="1"
+                        FontSize="10"
+                        HeightRequest="32"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding PreferenceValue, Mode=TwoWay}"
+                        TextColor="{OnPlatform Black,
+                                               iOS=White}"
+                        WidthRequest="350" />
+                </Grid>
+            </DataTemplate>
+            <services:PreferenceDataTemplateSelector
+                x:Key="PreferenceDataTemplateSelector"
+                PreferenceTemplate="{StaticResource PreferenceTemplate}"
+                PreferenceTemplateEmpty="{StaticResource PreferenceTemplateEmpty}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView WidthRequest="280">
+        <VerticalStackLayout>
+            <Entry x:Name="SearchEntry" Placeholder="Search">
+                <Entry.Behaviors>
+                    <behaviors:UserStoppedTypingBehavior
+                        Command="{Binding PreferencesSearchCommand}"
+                        CommandParameter="{Binding Source={x:Reference SearchEntry}, Path=Text}"
+                        MinimumLengthThreshold="4"
+                        ShouldDismissKeyboardAutomatically="True"
+                        StoppedTypingTimeThreshold="500" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label
+                Margin="5"
+                Padding="5"
+                HorizontalOptions="Center"
+                LineBreakMode="WordWrap"
+                Text="Please fill in as many preferences as you care to. &#10; &#10;The fields are 'free form,' fill in anything you like. Remember, the more information you provide to your buddies the better they will be able to match to what you like. Each of the categories can be edited for your needs.&#10; &#10; Save as frequently as you like, and to edit, just change the value you entered and press save." />
+            <CollectionView
+                Margin="20,20,10,10"
+                ItemTemplate="{StaticResource PreferenceDataTemplateSelector}"
+                ItemsSource="{Binding PreferenceList}"
+                SelectionMode="None" />
+            <Button
+                Margin="0,20,0,0"
+                Clicked="SavePreferences"
+                Command="{Binding SavePreferencesCommand}"
+                Text="Save" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

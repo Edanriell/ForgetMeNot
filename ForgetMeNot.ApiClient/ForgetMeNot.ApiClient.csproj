@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="RestSharp" Version="108.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ForgetMeNot.API.Domain\ForgetMeNot.API.Domain.csproj" />
+        <ProjectReference Include="..\ForgetMeNot.API.Dto\ForgetMeNot.API.Dto.csproj" />
+    </ItemGroup>
+</Project>

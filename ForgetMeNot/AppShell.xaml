@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ForgetMeNot.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ForgetMeNot"
+    xmlns:view="clr-namespace:ForgetMeNot.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Style="{StaticResource ShellStyles}">
+    <!--
+        x:Class="ForgetMeNot.AppShell"
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:local="clr-namespace:ForgetMeNot"
+        xmlns:pages="clr-namespace:ForgetMeNot.Pages"
+        Title="ForgetMeNot"
+        BackgroundColor="#512BD4"
+        Shell.FlyoutBehavior="Disabled">
+    -->
+    <Shell.Resources>
+        <Style x:Key="ShellStyles" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="#512BD4" />
+            <Setter Property="Shell.TitleColor" Value="White" />
+        </Style>
+        <Style x:Key="TabBarStyles" TargetType="TabBar">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#512BD4" />
+            <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="White" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+        </Style>
+    </Shell.Resources>
+    <TabBar Style="{StaticResource TabBarStyles}">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate view:MainPage}"
+            Icon="icon_home" />
+
+        <ShellContent
+            Title="About"
+            ContentTemplate="{DataTemplate view:AboutPage}"
+            Icon="icon_about" />
+
+        <ShellContent
+            Title="Preferences"
+            ContentTemplate="{DataTemplate view:PreferencesPage}"
+            Icon="icon_prefs" />
+
+        <ShellContent
+            Title="Buddies"
+            ContentTemplate="{DataTemplate view:BuddiesPage}"
+            Icon="icon_buddies" />
+    </TabBar>
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="LoginPage" />-->
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:Pages.MainPage}"
+        Route="MainPage" />-->
+    <!--  xmlns:local="clr-namespace:ForgetMeNotDemo"  -->
+    <!--<ShellContent
+         Title="Home"
+         ContentTemplate="{DataTemplate local:MainPageCS}"
+         Route="MainPageCS" />-->
+</Shell>
